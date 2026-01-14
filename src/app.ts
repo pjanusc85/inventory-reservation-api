@@ -1,7 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './swagger/swagger.config';
 import { requestLogger } from './middleware/logger.middleware';
 import { errorHandler } from './middleware/error.middleware';
@@ -35,16 +34,49 @@ export function createApp(): Application {
   app.use(requestLogger);
 
   // API Documentation - Swagger UI
-  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-    customSiteTitle: 'Inventory Reservation API Docs',
-    customCss: '.swagger-ui .topbar { display: none }',
-    swaggerOptions: {
-      persistAuthorization: true,
-      displayRequestDuration: true,
-      filter: true,
-      tryItOutEnabled: true,
-    },
-  }));
+  // Use CDN-hosted Swagger UI for serverless compatibility
+  app.get('/docs', (_req, res) => {
+    const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory Reservation API Docs</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+  <style>
+    body { margin: 0; padding: 0; }
+    .swagger-ui .topbar { display: none; }
+  </style>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = function() {
+      SwaggerUIBundle({
+        url: '/openapi.json',
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
+        persistAuthorization: true,
+        displayRequestDuration: true,
+        filter: true,
+        tryItOutEnabled: true
+      });
+    };
+  </script>
+</body>
+</html>`;
+    res.send(html);
+  });
 
   // OpenAPI JSON endpoint
   app.get('/openapi.json', (_req, res) => {
