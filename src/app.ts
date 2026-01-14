@@ -1,8 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import fs from 'fs';
-import path from 'path';
 import { requestLogger } from './middleware/logger.middleware';
 import { errorHandler } from './middleware/error.middleware';
 import routes from './routes';
@@ -83,13 +81,11 @@ export function createApp(): Application {
   app.get('/openapi.json', (_req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    // Try to read pre-generated spec file (created at build time)
-    // __dirname is 'dist' when compiled, so openapi.json is in the same directory
-    const specPath = path.join(__dirname, 'openapi.json');
-    if (fs.existsSync(specPath)) {
-      const spec = JSON.parse(fs.readFileSync(specPath, 'utf-8'));
-      res.json(spec);
-    } else {
+    try {
+      // Try to import generated spec (created at build time)
+      const { generatedSpec } = require('./swagger/generated-spec');
+      res.json(generatedSpec);
+    } catch (error) {
       // Fallback to runtime generation for development
       const { swaggerSpec } = require('./swagger/swagger.config');
       res.json(swaggerSpec);
