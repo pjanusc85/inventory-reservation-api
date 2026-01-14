@@ -45,7 +45,7 @@ This is enforced through:
       {
         url:
           env.NODE_ENV === 'production'
-            ? 'https://your-app.vercel.app'
+            ? 'https://inventory-reservation-api-eosin.vercel.app'
             : `http://localhost:${env.PORT}`,
         description: env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },

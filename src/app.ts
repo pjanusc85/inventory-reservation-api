@@ -21,7 +21,7 @@ export function createApp(): Application {
   // CORS middleware
   app.use(cors({
     origin: process.env['NODE_ENV'] === 'production'
-      ? ['https://your-app.vercel.app'] // Update with your production domain
+      ? ['https://inventory-reservation-api-eosin.vercel.app']
       : ['http://localhost:3000', 'http://localhost:3001'],
     credentials: true,
   }));
