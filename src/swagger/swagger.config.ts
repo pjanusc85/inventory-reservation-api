@@ -1,4 +1,5 @@
 import swaggerJsdoc from 'swagger-jsdoc';
+import path from 'path';
 import { env } from '../config/environment';
 
 /**
@@ -190,7 +191,12 @@ This is enforced through:
       },
     },
   },
-  apis: ['./src/routes/**/*.ts'], // Path to route files with JSDoc comments
+  //Use absolute paths to find route files in both dev and production
+  apis: [
+    path.join(process.cwd(), 'src/routes/v1/*.ts'),
+    path.join(process.cwd(), 'src/routes/index.ts'),
+  ],
 };
+
 
 export const swaggerSpec = swaggerJsdoc(options);
