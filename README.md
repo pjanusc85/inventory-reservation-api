@@ -6,11 +6,11 @@ A backend API for managing inventory with temporary reservations and strong conc
 
 ## Quick Links
 
-- **Deployed API:** `[TO BE ADDED AFTER DEPLOYMENT]`
-- **Swagger Documentation:** `[DEPLOYED_URL]/docs`
-- **OpenAPI JSON:** `[DEPLOYED_URL]/openapi.json`
-- **Demo Video:** `[TO BE ADDED]`
-- **GitHub Repository:** `[TO BE ADDED]`
+- **Deployed API:** https://inventory-reservation-api-eosin.vercel.app
+- **Swagger Documentation:** https://inventory-reservation-api-eosin.vercel.app/docs
+- **OpenAPI JSON:** https://inventory-reservation-api-eosin.vercel.app/openapi.json
+- **Demo Video:** https://drive.google.com/drive/folders/1fyh85Fdkxhk8zC406NfUVH2TYJksXA8Y?usp=sharing
+- **GitHub Repository:** https://github.com/pjanusc85/inventory-reservation-api
 
 ---
 

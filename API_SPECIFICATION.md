@@ -3,7 +3,7 @@
 ## Base URL
 
 **Local Development:** `http://localhost:3000`
-**Production (Vercel):** `https://your-app.vercel.app`
+**Production (Vercel):** `https://inventory-reservation-api-eosin.vercel.app`
 
 ## API Versioning
 

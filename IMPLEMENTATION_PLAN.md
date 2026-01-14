@@ -715,7 +715,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'https://your-app.vercel.app',
+        url: 'https://inventory-reservation-api-eosin.vercel.app',
         description: 'Production server',
       },
     ],
