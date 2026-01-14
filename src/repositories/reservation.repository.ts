@@ -52,7 +52,7 @@ export class ReservationRepository {
           error: error.message,
           code: error.code,
           details: error.details,
-          hint: error.hint
+          hint: error.hint,
         });
         throw new Error(`Failed to create reservation: ${error.message}`);
       }

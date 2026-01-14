@@ -43,9 +43,10 @@ This is enforced through:
     },
     servers: [
       {
-        url: env.NODE_ENV === 'production'
-          ? 'https://your-app.vercel.app'
-          : `http://localhost:${env.PORT}`,
+        url:
+          env.NODE_ENV === 'production'
+            ? 'https://your-app.vercel.app'
+            : `http://localhost:${env.PORT}`,
         description: env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
     ],

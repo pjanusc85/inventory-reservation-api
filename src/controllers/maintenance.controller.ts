@@ -18,8 +18,10 @@ export class MaintenanceController {
   expireReservations = asyncHandler(async (_req: Request, res: Response) => {
     const result = await this.maintenanceService.expireReservations();
 
-    res.status(200).json(
-      createSuccessResponse(result, `Successfully expired ${result.expiredCount} reservations`)
-    );
+    res
+      .status(200)
+      .json(
+        createSuccessResponse(result, `Successfully expired ${result.expiredCount} reservations`)
+      );
   });
 }

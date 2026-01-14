@@ -35,7 +35,9 @@ export const errorHandler = (err: Error, req: Request, res: Response, _next: Nex
 
   // PostgreSQL/Supabase errors
   if (err.message.includes('duplicate key')) {
-    return res.status(409).json(createErrorResponse(ErrorCode.DATABASE_ERROR, 'Duplicate resource'));
+    return res
+      .status(409)
+      .json(createErrorResponse(ErrorCode.DATABASE_ERROR, 'Duplicate resource'));
   }
 
   if (err.message.includes('foreign key')) {
@@ -54,7 +56,7 @@ export const errorHandler = (err: Error, req: Request, res: Response, _next: Nex
  * 404 Not Found handler
  */
 export const notFoundHandler = (req: Request, res: Response) => {
-  res.status(404).json(
-    createErrorResponse('NOT_FOUND', `Route ${req.method} ${req.path} not found`)
-  );
+  res
+    .status(404)
+    .json(createErrorResponse('NOT_FOUND', `Route ${req.method} ${req.path} not found`));
 };

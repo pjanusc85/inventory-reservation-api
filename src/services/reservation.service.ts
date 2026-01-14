@@ -140,12 +140,9 @@ export class ReservationService {
 
     // Cannot confirm expired reservations
     if (existing.expiresAt < new Date()) {
-      throw new AppError(
-        ErrorCode.RESERVATION_EXPIRED,
-        'Cannot confirm expired reservation',
-        409,
-        { expiredAt: existing.expiresAt }
-      );
+      throw new AppError(ErrorCode.RESERVATION_EXPIRED, 'Cannot confirm expired reservation', 409, {
+        expiredAt: existing.expiresAt,
+      });
     }
 
     // Atomic confirm operation
@@ -229,7 +226,10 @@ export class ReservationService {
       // Re-fetch to get current state
       const current = await this.reservationRepo.findById(id);
 
-      if (current?.status === ReservationStatus.CANCELLED || current?.status === ReservationStatus.EXPIRED) {
+      if (
+        current?.status === ReservationStatus.CANCELLED ||
+        current?.status === ReservationStatus.EXPIRED
+      ) {
         // Was cancelled/expired by another request
         return current;
       }

@@ -75,8 +75,7 @@ export class ItemRepository {
       throw new Error(`Failed to calculate reserved quantity: ${reservedError.message}`);
     }
 
-    const reservedQuantity =
-      reservedData?.reduce((sum, r) => sum + (r.quantity || 0), 0) || 0;
+    const reservedQuantity = reservedData?.reduce((sum, r) => sum + (r.quantity || 0), 0) || 0;
 
     // Calculate confirmed quantity
     const { data: confirmedData, error: confirmedError } = await this.client
@@ -90,8 +89,7 @@ export class ItemRepository {
       throw new Error(`Failed to calculate confirmed quantity: ${confirmedError.message}`);
     }
 
-    const confirmedQuantity =
-      confirmedData?.reduce((sum, r) => sum + (r.quantity || 0), 0) || 0;
+    const confirmedQuantity = confirmedData?.reduce((sum, r) => sum + (r.quantity || 0), 0) || 0;
 
     const availableQuantity = item.totalQuantity - reservedQuantity - confirmedQuantity;
 
