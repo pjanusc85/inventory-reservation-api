@@ -94,15 +94,5 @@ async function startServer(): Promise<void> {
   }
 }
 
-// For Vercel serverless deployment, export the app
-// For local development, start the server
-if (process.env['VERCEL']) {
-  // Serverless environment - Vercel will handle the server
-  // The app is exported below
-} else {
-  // Local development - start the server
-  startServer();
-}
-
-// Export app for Vercel serverless (must be at top level)
-export default createApp();
+// Start the server
+startServer();
