@@ -28,8 +28,9 @@ export const logger = winston.createLogger({
   ],
 });
 
-// In production, also log to files
-if (env.NODE_ENV === 'production') {
+// In production (non-serverless), also log to files
+// Serverless environments (Vercel, AWS Lambda) have read-only filesystems
+if (env.NODE_ENV === 'production' && !process.env['VERCEL']) {
   logger.add(
     new winston.transports.File({
       filename: 'logs/error.log',
