@@ -42,7 +42,7 @@ export function createApp(): Application {
 <head>
   <meta charset="UTF-8">
   <title>Inventory Reservation API Docs</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css">
   <style>
     body { margin: 0; padding: 0; }
     .swagger-ui .topbar { display: none; }
@@ -50,8 +50,8 @@ export function createApp(): Application {
 </head>
 <body>
   <div id="swagger-ui"></div>
-  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-standalone-preset.js"></script>
   <script>
     window.onload = function() {
       SwaggerUIBundle({
