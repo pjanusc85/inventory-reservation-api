@@ -94,5 +94,13 @@ async function startServer(): Promise<void> {
   }
 }
 
-// Start the server
-startServer();
+// For Vercel serverless deployment, export the app
+// For local development, start the server
+if (process.env.VERCEL) {
+  // Serverless environment - export the app
+  const app = createApp();
+  export default app;
+} else {
+  // Local development - start the server
+  startServer();
+}
