@@ -191,10 +191,13 @@ This is enforced through:
       },
     },
   },
-  //Use absolute paths to find route files in both dev and production
+  // Use both .ts (dev) and .js (production/Vercel) files
+  // JSDoc comments are preserved in compiled JavaScript
   apis: [
     path.join(process.cwd(), 'src/routes/v1/*.ts'),
     path.join(process.cwd(), 'src/routes/index.ts'),
+    path.join(process.cwd(), 'dist/routes/v1/*.js'),
+    path.join(process.cwd(), 'dist/routes/index.js'),
   ],
 };
 
